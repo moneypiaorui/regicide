@@ -3,13 +3,20 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 100vh;
+  height: 95vh;
+}
+.player-up{
+  height: 150px;
+  width: 70%;
+  border: solid black 1px;
+  border-radius: 10px;
 }
 
 .battle-area {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
   width: 70%;
   height: 30%;
   border: solid black 1px;
@@ -18,21 +25,51 @@
 
 .attribute{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
   height: 150px;
   font-size: 30px;
 }
-
-.battle-area .cardContain {
-  height: 150px;
-  width: 20%;
+.attribute span{
+  margin: 10px 30px 0px 30px;
 }
 
 
+.piles-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: solid black 1px;
+  border-radius: 10px;
+  width: 100%;
+}
+.piles-area .pile-with-name span{
+  font-size: 20px;
+}
+.piles-area .pile-with-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 10%;
+}
+.piles-area .pile-with-name:nth-child(1) {
+  width: 30%;
+}
+.piles-area .pile-with-name:nth-child(2) {
+  width: 20%;
+}
+.piles-area .pile-with-name .cardContain {
+  width: 100%;
+}
+
+
+
+
+
 .player-area {
-  width: 50%;
+  width: 70%;
   height: 30%;
   display: flex;
   flex-direction: column;
@@ -68,10 +105,15 @@
   background-position: left;
   background-clip: padding-box;
   background-repeat: no-repeat;
-  border: 1px blue solid;
-  border-radius: 10px;
+  /* border: 1px blue solid; */
+  border-right: 0px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
   transition: 200ms;
-  overflow:visible
+  overflow:visible;
+  position: relative;
+  margin-left: -50px;
+  /* flex-shrink:0; */
 }
 
 .select {
@@ -88,6 +130,8 @@
   align-items: center;
   border: solid black 1px;
   border-radius: 10px;
+  height: 150px;
+  padding-left: 50px;
 }
 
 .player-active{
@@ -102,4 +146,18 @@
 
 .hide{
   display: none;
+}
+
+.link{
+  /* width: 95%; */
+  display: flex;
+  position: fixed;
+  justify-content:space-around ;
+  align-items: center;
+  top: 0;
+}
+.link a{
+  margin: 0 30px;
+  font-size: 30px;
+  
 }

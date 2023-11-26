@@ -1,11 +1,11 @@
-Modes = [[8,20],[7,8],[6,7],[5,6],[5,5]];
-[originalCards,cardsLimit] = Modes[0];
+Modes = [[10,20],[7,8],[6,7],[5,6],[5,5]];
+[originalCards,cardsLimit] = Modes[1];
 
 playButton = document.getElementById("play");
 payButton = document.getElementById("pay");
 skipButton = document.getElementById("skip");
 
-bossPile = new CardPile([], "bossPile", 1, 0);
+bossPile = new CardPile([], "bossPile", 0, 0);
 handPile = new CardPile([], "handPile", 1, 0);
 handPile.clickAllow = 1;
 wastePile = new CardPile([], "wastePile", 1, 1);

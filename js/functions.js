@@ -16,10 +16,16 @@ function countElements(arr) {
 play = () => {
     if (attack(handPile.cardList.filter(card => card.selected == 1))) {
         if (BossInfo.life > 0) {
-            //boss没死，进入支付阶段
-            playButton.classList.add("hide");
-            skipButton.classList.add("hide");
-            payButton.classList.remove("hide");
+            if (BossInfo.attack > 0) {
+                //boss没死，并且boss攻击力没有降到0以下，进入支付阶段
+                if(handPile.cardList.reduce((acc,card)=>acc+card.attack,0)<BossInfo.attack){
+                    alert("Cannot afford the attack,GAME OVER");
+                    location.reload();
+                }
+                playButton.classList.add("hide");
+                skipButton.classList.add("hide");
+                payButton.classList.remove("hide");
+            }
         } else {
             selectBoss();
         }
@@ -51,6 +57,7 @@ pay = () => {
 
 skip = () => {
     alert("GAMEOVER");
+    location.reload();
 }
 
 function refresh() {
@@ -70,7 +77,8 @@ function selectBoss() {
         Boss.cardList[0].attack = BossInfo.attack;
         BossInfo.updateShow();
     } else {
-        alert("You win!")
+        alert("You win!");
+        location.reload();
     }
 }
 
@@ -102,7 +110,7 @@ function hurt(value) {
 
     return 0;
 }
-// 黑桃效果，增加防御
+// 黑桃效果，增加防御,等价于减小攻击
 function reduceAttack(value) {
     BossInfo.attack -= value;
 }
@@ -136,16 +144,16 @@ function attack(attackPile) {
     } else {
         let numClass = countElements(attackPile.map(card => card.value));
         let typeClass = countElements(attackPile.map(card => card.suit));
-        let sumAttack = attackPile.reduce((acc,card)=>acc+card.attack,0);
-        if (Object.keys(numClass).length == 1||attackPile.length-numClass["1"]==1) {
+        let sumAttack = attackPile.reduce((acc, card) => acc + card.attack, 0);
+        if (Object.keys(numClass).length == 1 || attackPile.length - numClass["1"] == 1) {
             handPile.cardList = handPile.cardList.filter(card => card.selected == 0);//移出手牌
-            Object.keys(typeClass).forEach(key=>{
-                effect(key,sumAttack);//效果结算
+            Object.keys(typeClass).forEach(key => {
+                effect(key, sumAttack);//效果结算
             })
             hurt(sumAttack);//伤害结算
             wastePile.push(attackPile);//攻击牌堆移入弃牌堆
             return 1;
-        } 
+        }
     }
     return 0;
 }

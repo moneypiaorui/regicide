@@ -32,7 +32,7 @@ class PokerCard {
   }
 
   hide() {
-    this.element.style.backgroundImage = "url('images/53.jpg')";
+    this.element.style.backgroundImage = "url('images/0.jpg')";
   }
 
 }
