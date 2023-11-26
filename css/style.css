@@ -1,0 +1,105 @@
+#game-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+}
+
+.battle-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 70%;
+  height: 30%;
+  border: solid black 1px;
+  border-radius: 10px;
+}
+
+.attribute{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 150px;
+  font-size: 30px;
+}
+
+.battle-area .cardContain {
+  height: 150px;
+  width: 20%;
+}
+
+
+.player-area {
+  width: 50%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  border: solid black 1px;
+  border-radius: 10px;
+
+}
+
+.button-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 40px;
+  font-size: 35px;
+  background-color: greenyellow;
+  border-radius: 10px;
+  margin: 30px 40px;
+  padding: 5px 5px;
+}
+
+.card {
+  width: 105px;
+  height: 150px;
+  background-size: cover;
+  background-position: left;
+  background-clip: padding-box;
+  background-repeat: no-repeat;
+  border: 1px blue solid;
+  border-radius: 10px;
+  transition: 200ms;
+  overflow:visible
+}
+
+.select {
+  transition: 200ms;
+  transform: translateY(-20px);
+}
+
+/* 手牌展示区域 */
+.cardContain {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: solid black 1px;
+  border-radius: 10px;
+}
+
+.player-active{
+
+}
+
+.folded {
+  position: absolute;
+  /* left: 0;
+  top: 0; */
+}
+
+.hide{
+  display: none;
+}

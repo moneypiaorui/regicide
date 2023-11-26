@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>弑君者游戏</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <div id="game-board">
+    <div class="battle-area">
+      <div class="cardContain" id="bossPile"></div>
+      <div class="cardContain" id="boss-showArea"></div>
+      <div class="attribute"><span id="life">life</span><span id="attack">attack</span></div>
+      <div class="cardContain" id="wastePile"></div>
+      <div class="cardContain" id="drawPile"></div>
+    </div>
+    <div class="player-area">
+      <div class="button-area">
+      <div class="button"  id="play">出牌</div>
+      <div class="button"  id="skip">跳过</div>
+      <div class="button"  id="pay">支付</div>
+      </div>
+      <div class="cardContain player-active" id="handPile">
+
+      </div>
+    </div>
+  </div>
+  <script src="js/obj.js"></script>
+  <script src="js/functions.js"></script>
+  <script src="js/game.js"></script>
+</body>
+
+</html>
