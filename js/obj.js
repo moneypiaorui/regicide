@@ -14,6 +14,7 @@ class PokerCard {
     this.element.addEventListener("click", this.select);
   }
   removeClick() {
+    if(this.selected)this.select();
     this.element.removeEventListener("click", this.select);
   }
   fold() {
@@ -70,14 +71,12 @@ class CardPile {
   }
   push(array) {
     array.forEach(card => {
-      card.element.classList="card";
       if (this.foldState) {
         card.fold();
       } else {
         card.removeFold();
       }
       if(this.clickAllow){
-        console.log("add");
           card.addClick();
       }else{
         card.removeClick();
@@ -99,7 +98,6 @@ class CardPile {
         card.removeFold();
       }
       if(this.clickAllow){
-        console.log("add");
           card.addClick();
       }else{
         card.removeClick();
@@ -127,6 +125,9 @@ class CardPile {
     this.carlist.forEach(card => {
       card.show();
     });
+  }
+  sort(){
+    this.cardList.sort((a,b)=>a.value-b.value);
   }
 }
 

@@ -1,5 +1,5 @@
-originalCards = 6;//初始手牌
-cardsLimit = 8;//单人
+Modes = [[8,20],[7,8],[6,7],[5,6],[5,5]];
+[originalCards,cardsLimit] = Modes[0];
 
 playButton = document.getElementById("play");
 payButton = document.getElementById("pay");
@@ -18,6 +18,7 @@ for (let i = 1; i <= 4; i++) {
 }
 drawPile.shuffle();
 handPile.push(drawPile.cardList.splice(0, originalCards));
+handPile.sort();
 
 // boss牌堆洗牌
 for (let j = 13; j >= 11; j--) {

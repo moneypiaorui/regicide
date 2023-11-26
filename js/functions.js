@@ -1,3 +1,17 @@
+// 将数组变为键值对
+function countElements(arr) {
+    let counts = {};
+    for (let i = 0; i < arr.length; i++) {
+        let element = arr[i];
+        if (counts[element]) {
+            counts[element] += 1;
+        } else {
+            counts[element] = 1;
+        }
+    }
+    return counts;
+}
+
 // 出牌事件
 play = () => {
     if (attack(handPile.cardList.filter(card => card.selected == 1))) {
@@ -22,7 +36,7 @@ play = () => {
 pay = () => {
     let selectPile = handPile.cardList.filter(card => card.selected == 1)
     let sum = (selectPile.reduce((accumulator, card) => accumulator + card.attack, 0))
-    alert(sum);
+    // alert(sum);
     if (sum < BossInfo.attack) {
         alert("Not enough to defend the attack");
     } else {
@@ -55,7 +69,7 @@ function selectBoss() {
         BossInfo = new Anermy(Boss.cardList[0].value, Boss.cardList[0].suit);
         Boss.cardList[0].attack = BossInfo.attack;
         BossInfo.updateShow();
-    }else{
+    } else {
         alert("You win!")
     }
 }
@@ -96,8 +110,8 @@ function reduceAttack(value) {
 // 方片效果，摸牌
 function drawCard(value) {
     drawNum = Math.min(value, cardsLimit - handPile.cardList.length, drawPile.cardList.length);
-    handPile.push(drawPile.cardList.splice(drawPile.cardList.length-drawNum , drawNum));
-    console.log(handPile.cardList);
+    handPile.push(drawPile.cardList.splice(drawPile.cardList.length - drawNum, drawNum));
+    handPile.sort();
 }
 
 function doubleAttack(value) {
@@ -119,9 +133,19 @@ function attack(attackPile) {
         hurt(attackPile[0].attack);//伤害结算
         wastePile.push(attackPile);//攻击牌堆移入弃牌堆
         return 1;
-    } else if (0) {
-
-        return 1;
+    } else {
+        let numClass = countElements(attackPile.map(card => card.value));
+        let typeClass = countElements(attackPile.map(card => card.suit));
+        let sumAttack = attackPile.reduce((acc,card)=>acc+card.attack,0);
+        if (Object.keys(numClass).length == 1||attackPile.length-numClass["1"]==1) {
+            handPile.cardList = handPile.cardList.filter(card => card.selected == 0);//移出手牌
+            Object.keys(typeClass).forEach(key=>{
+                effect(key,sumAttack);//效果结算
+            })
+            hurt(sumAttack);//伤害结算
+            wastePile.push(attackPile);//攻击牌堆移入弃牌堆
+            return 1;
+        } 
     }
     return 0;
 }
